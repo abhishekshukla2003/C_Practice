@@ -1,0 +1,272 @@
+/****************************************************************************************************************/
+ques 40 :Write a function that inputs a number and prints the multiplication table of the number.
+/****************************************************************************************************************/
+Code:
+
+#include <stdio.h>
+int printTable(int n);
+int main()
+{
+    int num;
+    printf("Enter a number:\n");
+    scanf("%d",&num);
+    printTable(num);
+ 
+
+    return 0;
+}
+int printTable(int n){
+    int res=0;
+    for(int i = 1;i<=10;i++){
+        res= n*i;
+        printf("%d * %d = %d\n",n,i,res);
+ 
+    }
+}
+/****************************************************************************************************************/
+ques41 :Write a function CubeSum() that accepts and integer and returns the sum of cubes of the individual digits of that number.
+Use this function make functions PrintArmstrong() and IsArmstrong() to print Armstrong numbers and to find whether a number is an Armstrong number.
+/****************************************************************************************************************/
+Code:
+
+#include <stdio.h>
+int CubeSum(int n);
+int isArmstrong(int n);
+int PrintArmstrong(int start,int end);
+int main()
+{
+    int num,result;
+    int a,n;
+    printf("Enter a number:\n");
+    scanf("%d",&num);
+    result = CubeSum(num);
+    printf("Sum of the digits cube is %d\n",result);
+ 
+    if(isArmstrong(num))
+        printf("Number is armstrong number.\n");
+ 
+    else
+        printf("Number is Not an Armstrong number.\n");
+ 
+    printf("Printing armstrong number between 1 to 1000:\n");
+    PrintArmstrong(1,1000);
+
+    return 0;
+}
+int CubeSum(int num){
+    int n2 = 0;
+ while(num!=0){
+    int n1 = num % 10;
+        n2 = n2 +(n1*n1*n1);
+        num = num /10;
+ }
+ return n2;
+
+}
+int isArmstrong(int n)
+{
+    if(n == CubeSum(n))
+        return 1;
+    else
+        return 0;
+}
+int PrintArmstrong(int start,int end){
+ 
+    for(int i = start;i<=end;i++){
+        if(isArmstrong(i))
+        printf(" %d ",i);
+    }
+    printf("\n");
+}
+/****************************************************************************************************************/
+ques 42:Write a function ProdDigits() that inputs a number and returns the products of digits of that number.
+/****************************************************************************************************************/
+Code:
+
+#include <stdio.h>
+int ProdDigits(int num);
+
+int main()
+{
+    int num,result;
+    int a,n;
+    printf("Enter a number:\n");
+    scanf("%d",&num);
+    result = ProdDigits(num);
+    printf("Product of the digits is %d\n",result);
+
+    return 0;
+}
+int ProdDigits(int num){
+    int n2 = 1;
+ while(num!=0){
+    int n1 = num % 10;
+        n2 = n2 * n1;
+        num = num /10;
+ }
+ return n2;
+
+}
+/****************************************************************************************************************/
+Ques 43:Using the function ProdDigits of the previous exercise write function MDR() (Multiplicative Digital root) and (Multiplicative persitence) Mpersistence() function that input a number and return its multiplicative digital root and multiplicative persistence respectively.
+/****************************************************************************************************************/
+
+Code:
+
+#include <stdio.h>
+
+int ProdDigits(int num);
+int MDR(int num);
+int Mpersistence(int num);
+
+int main()
+{
+    int num,result;
+    int a,n;
+    printf("Enter a number:\n");
+    scanf("%d",&num);
+    result = ProdDigits(num);
+    printf("Product of the digits is %d\n",result);
+ 
+    printf("Multiplicative Digital Root is %d\n",MDR(num));
+    printf("Multicative Persistence is %d",Mpersistence(num));
+ 
+    return 0;
+}
+int ProdDigits(int num){
+    int n2 = 1;
+ while(num!=0){
+    int n1 = num % 10;
+        n2 = n2 * n1;
+        num = num /10;
+ }
+ return n2;
+
+}
+int MDR(int num){
+    while(num>=10){
+        num = ProdDigits(num);
+    }
+    return num;
+}
+int Mpersistence(int num){
+    int count =0;
+    while(num>=10){
+ 
+        num = ProdDigits(num);
+        count++;
+    }
+    return count;
+}
+ 
+/****************************************************************************************************************/
+Ques 44: Write a function SumPdivisor() that finds sum of Proper divisor of a number.
+Ques 45:Using this SumPdivisor() ,Write a program to print all the Perfect Number in a given range.
+/***********************************************************************************************************/
+Code: 
+
+#include <stdio.h>
+
+int SumPdivisor(int n){
+    int result, sum = 0;
+    for(int i = 1; i < n; i++){
+        result = n % i;
+        if(result == 0){
+            sum = sum + i;
+        }
+    }
+    return sum;
+}
+
+int PerfectNumbers(int start, int end){
+    int count = 0;
+    for(int n = start; n <= end; n++){
+        if(n > 0 && SumPdivisor(n) == n){
+            printf("perfect number %d\n", n);
+            count++;
+        }
+    }
+    return count;
+}
+
+int main()
+{
+    int start, end, ans1;
+
+    printf("Enter range of the number - start num: \n");
+    scanf("%d", &start);
+    printf("Enter range of the number - end num: \n");
+    scanf("%d", &end);
+
+    printf("Perfect numbers are:\n");
+    ans1 = PerfectNumbers(start, end);
+    printf("Count of perfect numbers found: %d\n", ans1);
+
+    return 0;
+}
+
+/****************************************************************************************************************/
+Ques 51: Write a function to find whether a character is Alphanumeric.
+Ques 52: Write a function that accepts a character, if a character is a lower case alphabets its upper case equivalent is returned otherwise the unchanged character is returned.
+/***********************************************************************************************************/
+Code:
+
+#include <stdio.h>
+void Isalphanumeric(char c) {
+	if((c>=65 && c<=90) || (c>=97 && c<=122) || (c>=48 && c<=57))
+		printf("Char is alphanumeric:\n");
+	else
+		printf("char is not alphanumeric:\n");
+}
+char ReturnUppercase(char c){
+    if((c>=97 && c<=122)){
+        int c3 =c-32;
+        return c3;
+    }
+    else 
+        return c;
+}
+
+int main()
+{
+	char c1,reverse;
+	printf("Enter a character:\n");
+	scanf("%c",&c1);
+    Isalphanumeric(c1);
+    
+    reverse =ReturnUppercase(c1);
+    printf("Returned char is: %c",reverse);
+
+	return 0;
+}
+/****************************************************************************************************************/
+QUES 53:Write a function to find the sum of this series upto n terms.
+	1+ 1/4 + 1/9 + 1/16 +.................
+/****************************************************************************************************************/
+Code: 
+
+#include <stdio.h>
+
+double SumofSeries(int n){
+    double a,b=0.1;
+    int k;
+    for(int i=0;i<=n;i++){
+        k= (1+i)*(1+i);
+        a = 1.0/k;
+        b = b+a;
+        printf("%lf \n",b);
+    }
+    return b;
+    
+}
+
+int main()
+{
+    double result;
+    int num;
+    printf("Enter number of terms(n):\n");
+    scanf("%d",&num);
+    result =SumofSeries(num);
+    printf("Sum of Series is %lf\n",result);
+    return 0;
+}
